@@ -3,6 +3,8 @@ import com.workintech.Library.Categories;
 import com.workintech.Library.Library;
 import com.workintech.Library.Users;
 
+import java.awt.print.Book;
+
 public class Main {
     public static void main(String[] args) {
         Books book1 = new Books(1,"Burak CEVİZLİ" ,"JAVA COK ZOR", Categories.HORROR);
@@ -24,5 +26,10 @@ public class Main {
         Users burak = new Users();
         burak.addUserList(book3);
         System.out.println(burak);
+
+        System.out.println(library);
+
+        burak.removeFromUserList(book3);
+        System.out.println(library);
     }
 }
