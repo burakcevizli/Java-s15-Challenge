@@ -1,6 +1,6 @@
 package com.workintech.Library;
 
-public class Users extends Person {
+public class Users extends Library {
 
     @Override
     public String toString() {

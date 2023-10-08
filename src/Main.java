@@ -1,6 +1,6 @@
 import com.workintech.Library.Books;
 import com.workintech.Library.Categories;
-import com.workintech.Library.Librarian;
+import com.workintech.Library.Library;
 import com.workintech.Library.Users;
 
 public class Main {
@@ -11,14 +11,14 @@ public class Main {
         Books book4 = new Books(4,"KİTAP4 YAZARI" ,"BAKICAZ", Categories.HORROR);
         Books book5 = new Books(5,"KİTAP5 YAZARI" ,"KİTAP 5", Categories.ADVENTURE);
 
-        Librarian librarian = new Librarian();
-        librarian.addBookLibrary(book1);
-        librarian.addBookLibrary(book2);
-        librarian.addBookLibrary(book3);
-        librarian.addBookLibrary(book4);
-        librarian.addBookLibrary(book5);
+        Library library = new Library();
+        library.addBookLibrary(book1);
+        library.addBookLibrary(book2);
+        library.addBookLibrary(book3);
+        library.addBookLibrary(book4);
+        library.addBookLibrary(book5);
+        System.out.println(library);
 
-        System.out.println(librarian);
 
 
         Users burak = new Users();
