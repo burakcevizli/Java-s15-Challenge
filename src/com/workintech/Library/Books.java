@@ -32,14 +32,17 @@ public class Books implements Comparable<Books> {
         return kategori;
     }
 
-    @Override
-    public String toString() {
-        return "Books{" +
-                "ID=" + ID +
-                ", Yazar='" + Yazar + '\'' +
-                ", Name='" + Name + '\'' +
-                ", kategori=" + kategori +
-                '}';
+
+    public void setYazar(String yazar) {
+        Yazar = yazar;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setKategori(Categories kategori) {
+        this.kategori = kategori;
     }
 
     @Override
@@ -58,5 +61,16 @@ public class Books implements Comparable<Books> {
     @Override
     public int compareTo(Books o) {
         return this.getName().compareTo(o.getName());
+    }
+
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "ID=" + ID +
+                ", Yazar='" + Yazar + '\'' +
+                ", Name='" + Name + '\'' +
+                ", kategori=" + kategori +
+                '}';
     }
 }

@@ -35,6 +35,18 @@ public class Student implements StudentDoAble {
         }
     }
 
+
+    public Books givenBooksByName(String name){
+        for(Books book : userList){
+            if(book.getName().equals(name)){
+                System.out.println("İade Edilen Kitap :" + book);
+                return book;
+            }
+        }
+        return null;
+    }
+
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + " List :" + userList;
