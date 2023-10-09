@@ -1,9 +1,4 @@
-import com.workintech.Library.Books;
-import com.workintech.Library.Categories;
-import com.workintech.Library.Library;
-import com.workintech.Library.Users;
-
-import java.awt.print.Book;
+import com.workintech.Library.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,24 +7,20 @@ public class Main {
         Books book3 = new Books(3,"Osman PAMUKOGLU" ,"YAŞAYANLAR DISINDA YAPACAK BIRSEY YOK", Categories.SCI_FICTION);
         Books book4 = new Books(4,"KİTAP4 YAZARI" ,"BAKICAZ", Categories.HORROR);
         Books book5 = new Books(5,"KİTAP5 YAZARI" ,"KİTAP 5", Categories.ADVENTURE);
+        Books book6 = new Books(6,"KİTAP5 YAZARI" ,"KİTAP 5", Categories.ADVENTURE);
 
-        Library library = new Library();
+        Library library = new AddBookLibraryMethod();
         library.addBookLibrary(book1);
         library.addBookLibrary(book2);
         library.addBookLibrary(book3);
         library.addBookLibrary(book4);
         library.addBookLibrary(book5);
-        System.out.println(library);
+        library.addBookLibrary(book6);
+        library.listBooks();
 
+        Student student1 = new Student();
+        student1.addUserList(book3);
+        System.out.println(student1);
 
-
-        Users burak = new Users();
-        burak.addUserList(book3);
-        System.out.println(burak);
-
-        System.out.println(library);
-
-        burak.removeFromUserList(book3);
-        System.out.println(library);
     }
 }

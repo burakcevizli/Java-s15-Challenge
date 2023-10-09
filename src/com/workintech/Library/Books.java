@@ -1,8 +1,9 @@
 package com.workintech.Library;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Books {
+public class Books implements Comparable<Books> {
     private int ID;
     private String Yazar;
     private String Name;
@@ -46,11 +47,16 @@ public class Books {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Books books = (Books) o;
-        return kategori == books.kategori;
+        return ID == books.ID && Objects.equals(Name, books.Name);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(kategori);
+    }
+
+    @Override
+    public int compareTo(Books o) {
+        return this.getName().compareTo(o.getName());
     }
 }
