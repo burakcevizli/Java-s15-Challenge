@@ -1,6 +1,9 @@
-import com.workintech.Library.*;
+import com.workintech.Library.Classes.Books;
+import com.workintech.Library.Classes.Library;
+import com.workintech.Library.Classes.Student;
+import com.workintech.Library.Enum.Categories;
+import com.workintech.Library.Interfaces.Actionable;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {

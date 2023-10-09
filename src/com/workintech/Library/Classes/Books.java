@@ -1,6 +1,7 @@
-package com.workintech.Library;
+package com.workintech.Library.Classes;
 
-import java.util.Comparator;
+import com.workintech.Library.Enum.Categories;
+
 import java.util.Objects;
 
 public class Books implements Comparable<Books> {

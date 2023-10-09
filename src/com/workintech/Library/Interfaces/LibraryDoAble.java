@@ -1,4 +1,6 @@
-package com.workintech.Library;
+package com.workintech.Library.Interfaces;
+
+import com.workintech.Library.Classes.Books;
 
 public interface LibraryDoAble extends Actionable{
 

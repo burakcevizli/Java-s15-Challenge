@@ -1,4 +1,4 @@
-package com.workintech.Library;
+package com.workintech.Library.Enum;
 
 public enum Categories {
     ADVENTURE,

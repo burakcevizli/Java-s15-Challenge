@@ -1,4 +1,7 @@
-package com.workintech.Library;
+package com.workintech.Library.Classes;
+
+import com.workintech.Library.Enum.Categories;
+import com.workintech.Library.Interfaces.LibraryDoAble;
 
 import java.util.Comparator;
 import java.util.LinkedList;
