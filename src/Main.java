@@ -9,18 +9,9 @@ public class Main {
         Books book5 = new Books(5,"KİTAP5 YAZARI" ,"KİTAP 5", Categories.ADVENTURE);
         Books book6 = new Books(6,"KİTAP5 YAZARI" ,"KİTAP 5", Categories.ADVENTURE);
 
-        Library library = new AddBookLibraryMethod();
-        library.addBookLibrary(book1);
+        Library library = new Library();
         library.addBookLibrary(book2);
-        library.addBookLibrary(book3);
-        library.addBookLibrary(book4);
-        library.addBookLibrary(book5);
-        library.addBookLibrary(book6);
         library.listBooks();
-
-        Student student1 = new Student();
-        student1.addUserList(book3);
-        System.out.println(student1);
 
     }
 }

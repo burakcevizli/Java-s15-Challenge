@@ -4,28 +4,11 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Library implements Actionable {
+public class Library implements LibraryDoAble {
 
 
-    public void addBookLibrary(Books book){
-
-    }
-
-    public void removeBookFromLibrary(Books book) {
-
-
-    }
-
-
-    public void addUserList(Books book) {
-
-    }
-
-    @Override
-    public void removeFromUserList(Books book) {
+    public void addBookLibrary(Books book) {
         allBooks2.put(book.getID(), book);
-        userList.remove(book);
-
         if (book.getKategori().equals(Categories.ADVENTURE)) {
             advenventureCategory.add(book);
         } else if (book.getKategori().equals(Categories.HORROR)) {
@@ -35,10 +18,24 @@ public class Library implements Actionable {
         }
     }
 
-    public void listBooks(){
+    public void removeBookFromLibrary(Books book) {
+        allBooks2.remove(book.getID(), book);
+        if (book.getKategori().equals(Categories.ADVENTURE)) {
+            advenventureCategory.remove(book);
+        } else if (book.getKategori().equals(Categories.HORROR)) {
+            horrorCategory.remove(book);
+        } else {
+            scienceFictionCategory.remove(book);
+        }
+    }
+
+
+
+
+    public void listBooks() {
         List<Books> sortedList = new LinkedList<>(allBooks2.values());
         sortedList.sort(Comparator.comparing(Books::getName));
-        for(Books book : sortedList) {
+        for (Books book : sortedList) {
             System.out.println("**********************");
             System.out.println("Kitap ID : " + book.getID());
             System.out.println("Kitap Name : " + book.getName());
