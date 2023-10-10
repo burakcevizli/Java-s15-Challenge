@@ -85,7 +85,7 @@ public class Main {
                                 break;
                             case "3":
                                 System.out.println("Hangi Kategoriyi görmek istiyorsunuz : ");
-                                System.out.println("Adventure için 1 ' i , Sci-Fic ' için 2 'i , Horror için 3'ü seçiniz.");
+                                System.out.println("Adventure için 1 ' i , Sports ' için 2 'i , Horror için 3'ü seçiniz.");
                                 String kategori = scanner.next();
                                 switch (kategori) {
                                     case "1" -> library.listByCategories(Categories.ADVENTURE);
