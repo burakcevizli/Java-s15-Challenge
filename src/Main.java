@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         Books book1 = new Books(1, "Burak CEVİZLİ", "JAVA", Categories.HORROR);
         Books book2 = new Books(2, "Ahmet Süleyman", "JAVA2", Categories.ADVENTURE);
         Books book3 = new Books(3, "Osman PAMUKOGLU", "JAVA3", Categories.SCI_FICTION);
@@ -25,84 +24,171 @@ public class Main {
         library.addBookLibrary(book6);
         Student student = new Student();
 
-
-        //Scanner Kısmı
-
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("OGRENCIMIZ HOS GELDINIZ ....");
+            System.out.println(" ");
+            System.out.println("********************** KUTUPHANEMIZE HOS GELDINIZ **********************");
+            System.out.println("************************************");
 
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("OGRENCIYSENIZ S ' YE , KUTUPHANECI ISENIZ L ' YE BASINIZ : ");
+            String secenek = scanner.nextLine().toLowerCase();
 
-            System.out.println("KUTUPHANEMIZDEN KITAP ALMAK ICIN LUTFEN 1`i , \n" +
-                    "KUTUPHANEMIZE KITABI GERI VERMEK ICINSE 2'i SEÇİNİZ , \n" +
-                    "KATEGORILERI GORMEK ICINSE 3' ü SECINIZ , \n" +
-                    "KUTUPHANEMIZDE KI TUM KITAPLARI GORMEK ICIN 4 ' E BASINIZ , \n" +
-                    "ODUNC ALDIGINIZ KITAPLARI GORMEK ICIN 5' E BASINIZ,\n" +
-                    "YAZARIN KITAPLARINI GORMEK ICIN 6' A BASINIZ.");
-            System.out.println("ÇIKMAK ICIN LUTFEN 0 ' A BASINIZ.");
+            if (secenek.equals("s")) {
+                System.out.print("Ogrenci şifresi girin: ");
+                String sifre = scanner.next();
 
-            String secenek = scanner.nextLine();
+                if (sifre.equals("ogrenci123")) {
+                    System.out.println("Ogrenci olarak giriş yaptınız.");
 
-            switch (secenek) {
+                    while (true) {
+                        System.out.println("Menü:");
+                        System.out.println("1. Kitap Al");
+                        System.out.println("2. Kitap İade Et");
+                        System.out.println("3. Kategoriye Göre Kitap Listele");
+                        System.out.println("4. Tüm Kitapları Listele");
+                        System.out.println("5. Kiraladığınız Kitapları Görüntüle");
+                        System.out.println("6. Yazar İsmine Göre Kitap Ara");
+                        System.out.println("7. Yeni Kitap Ekle");
+                        System.out.println("0. Çıkış");
 
-                case "0":
-                    System.exit(-1);
+                        System.out.print("Seçenek: ");
+                        String ogrenciSecenek = scanner.next();
 
-                case "1":
-                    System.out.println("Lütfen almak istediğiniz kitabın ismini giriniz : ");
-                    String bookName = scanner.nextLine();
-                    System.out.println("Faturanız 5 tl dir .");
-                    if (Actionable.userList.size() < 5) {
-                        System.out.println("Kitabınız eklenmiştir : " + bookName);
+                        switch (ogrenciSecenek) {
+                            case "0":
+                                System.out.println("Çıkış yapılıyor...");
+                                System.exit(0);
+                                break;
+                            case "1":
+                                System.out.println("Lütfen almak istediğiniz kitabın ismini giriniz : ");
+                                String bookName = scanner.next().toUpperCase();
+                                System.out.println("Faturanız " + (Actionable.userList.size() + 1) * 5 + " tl dir .");
+                                if (Actionable.userList.size() < 5) {
+                                    System.out.println("Kitabınız eklenmiştir : " + bookName);
+                                }
+                                student.addUserList(library.getBooksByName(bookName));
+                                System.out.println("Kitaplarınız : " + student);
+                                break;
+                            case "2":
+                                System.out.println("Kitap iadesi yapmak istediğiniz kitabı yazınız : ");
+                                String givenBookName = scanner.next().toUpperCase();
+                                System.out.println("Kitabınız iade edilmiştir : " + student.givenBooksByName(givenBookName));
+                                if (Actionable.userList.isEmpty()) {
+                                    System.out.println("İade edilecek kitap bulunmamaktadır.");
+                                } else {
+                                    student.removeFromUserList(student.givenBooksByName(givenBookName));
+                                    System.out.println("Faturanız iade edilmiştir. Tutar : 5 tl dir .");
+                                }
+                                System.out.println("Kitaplarınız : " + student);
+                                break;
+                            case "3":
+                                System.out.println("Hangi Kategoriyi görmek istiyorsunuz : ");
+                                System.out.println("Adventure için 1 ' i , Sci-Fic ' için 2 'i , Horror için 3'ü seçiniz.");
+                                String kategori = scanner.next();
+                                switch (kategori) {
+                                    case "1" -> library.listByCategories(Categories.ADVENTURE);
+                                    case "2" -> library.listByCategories(Categories.SCI_FICTION);
+                                    case "3" -> library.listByCategories(Categories.HORROR);
+                                    default -> System.out.println("Olmayan bir kategori seçtiniz.");
+                                }
+                                break;
+                            case "4":
+                                library.listBooks();
+                                break;
+                            case "5":
+                                if (Actionable.userList.isEmpty()) {
+                                    System.out.println("Henüz kitap kiralamadınız.");
+                                } else {
+                                    System.out.println(student);
+                                }
+                                break;
+                            case "6":
+                                System.out.println("Lütfen yazarın isimini giriniz :");
+                                String writerName = scanner.next();
+                                System.out.println(library.getBooksByAuthorName(writerName));
+                                break;
+                            case "7":
+                                System.out.println("Enter book ID: ");
+                                int bookID = scanner.nextInt();
+                                System.out.println("Enter book author: ");
+                                String bookAuthor = scanner.next();
+                                System.out.println("Enter book name: ");
+                                String bookNameForAdding = scanner.next();
+                                System.out.println("Enter book category: ");
+                                Categories bookCategory = Categories.valueOf(scanner.next().toUpperCase());
+                                Books addedBook = new Books(bookID, bookAuthor, bookNameForAdding, bookCategory);
+                                library.addBookLibrary(addedBook);
+                                System.out.println("Your book added library: " + addedBook);
+                                System.out.println("Updated Book List: " + library);
+                                break;
+
+                            default:
+                                System.out.println("Geçersiz seçenek. Tekrar deneyin.");
+                        }
                     }
-                    student.addUserList(library.getBooksByName(bookName));
-                    System.out.println("Kitaplarınız : " + student);
-                    break;
-                case "2":
-                    System.out.println("Kitap iadesi yapmak istediğiniz kitabı yazınız : ");
-                    String givenBookName = scanner.nextLine();
-                    System.out.println("Kitabınız iade edilmiştir : " + student.givenBooksByName(givenBookName));
-                    System.out.println("Faturanız iade edilmiştir. Tutar 5 tl dir.");
-                    student.removeFromUserList(student.givenBooksByName(givenBookName));
-                    System.out.println("Kitaplarınız : " + student);
-                    break;
+                } else {
+                    System.out.println("Hatalı şifre. Giriş reddedildi.");
+                }
+            } else if (secenek.equals("l")) {
+                System.out.print("Kutuphaneci şifrenizi girin: ");
+                String sifre = scanner.next();
+                if (sifre.equals("kutuphane123")) {
+                    System.out.println("Kutuphaneci olarak giriş yaptınız.");
 
-                case "3":
-                    System.out.println("Hangi Kategoriyi görmek istiyorsunuz : ");
-                    System.out.println("Adventure için 1 ' i , Sci-Fic ' için 2 'i , Horror için 3'ü seçiniz.");
-                    String kategori = scanner.nextLine();
-                    switch (kategori) {
-                        case "1" -> library.listByCategories(Categories.ADVENTURE);
-                        case "2" -> library.listByCategories(Categories.SCI_FICTION);
-                        case "3" -> library.listByCategories(Categories.HORROR);
+                    while (true) {
+                        System.out.println("Menü:");
+                        System.out.println("1. Bir Kitap Ekle");
+                        System.out.println("2. Bir Kitap Sil");
+                        System.out.println("0. Çıkış");
+
+                        System.out.print("Seçenek: ");
+                        String kutuphaneciSecenek = scanner.next();
+
+                        switch (kutuphaneciSecenek) {
+                            case "1":
+                                System.out.println("Enter book ID: ");
+                                int bookID = scanner.nextInt();
+                                System.out.println("Enter book author: ");
+                                String bookAuthor = scanner.next();
+                                System.out.println("Enter book name: ");
+                                String bookNameForAdding = scanner.next();
+                                System.out.println("Enter book category: ");
+                                Categories bookCategory = Categories.valueOf(scanner.next().toUpperCase());
+                                Books addedBook = new Books(bookID, bookAuthor, bookNameForAdding, bookCategory);
+                                library.addBookLibrary(addedBook);
+                                System.out.println("Your book added library: " + addedBook);
+                                System.out.println("Updated Book List: " + library);
+                                break;
+
+                            case "2":
+                                System.out.println("Please enter book name for deleting: ");
+                                String deletedBook = scanner.next().toLowerCase();
+                                for (Books book : Actionable.allBooks2.values()) {
+                                    if (deletedBook.equals(book.getName().toLowerCase())) {
+                                        System.out.println(book.getName() + "=> This book deleted in library list.");
+                                        library.removeBookFromLibrary(book);
+                                        System.out.println("Updated Book List: " + library);
+                                        break;
+                                    } else {
+                                        System.out.println("Yanlıs kitap ismi girdiniz.");
+                                        System.out.println("Kutuphane : " + library);
+                                    }
+                                }
+                                break;
+
+
+                            case "0":
+                                System.out.println("Çıkış yapılıyor...");
+                                System.exit(0);
+                                break;
+
+                            default:
+                                System.out.println("Gecersiz bir seçenek işaretlediniz.");
+                        }
                     }
-                    break;
-
-                case "4":
-                    library.listBooks();
-                    break;
-
-                case "5":
-                    if (Actionable.userList.isEmpty()) {
-                        System.out.println("Henüz kitap kiralamadınız.");
-                    } else {
-                        System.out.println(student);
-                    }
-                    break;
-
-                case "6":
-                    System.out.println("Lütfen yazarın isimini giriniz :");
-
-                    String writerName = scanner.nextLine();
-
-                    System.out.println(library.getBooksByAuthorName(writerName));
-
+                }
             }
-
-
         }
-
-
     }
 }
