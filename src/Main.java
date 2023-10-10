@@ -26,12 +26,11 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("********************** KUTUPHANEMIZE HOS GELDINIZ **********************");
+        System.out.println("************************************");
+        anaMenu:
         while (true) {
-            System.out.println(" ");
-            System.out.println("********************** KUTUPHANEMIZE HOS GELDINIZ **********************");
-            System.out.println("************************************");
-
-            System.out.println("OGRENCIYSENIZ S ' YE , KUTUPHANECI ISENIZ L ' YE BASINIZ : ");
+            System.out.println("OGRENCIYSENIZ S ' YE , KUTUPHANECI ISENIZ L ' YE BASINIZ ,ÇIKMAK ICIN E ' A BASINIZ. ");
             String secenek = scanner.nextLine().toLowerCase();
 
             if (secenek.equals("s")) {
@@ -50,6 +49,7 @@ public class Main {
                         System.out.println("5. Kiraladığınız Kitapları Görüntüle");
                         System.out.println("6. Yazar İsmine Göre Kitap Ara");
                         System.out.println("7. Yeni Kitap Ekle");
+                        System.out.println("9. Ana Menüye Dön");
                         System.out.println("0. Çıkış");
 
                         System.out.print("Seçenek: ");
@@ -122,7 +122,9 @@ public class Main {
                                 System.out.println("Your book added library: " + addedBook);
                                 System.out.println("Updated Book List: " + library);
                                 break;
-
+                            case "9":
+                                System.out.println("Ana menüye dönülüyor...");
+                                continue anaMenu;
                             default:
                                 System.out.println("Geçersiz seçenek. Tekrar deneyin.");
                         }
@@ -140,6 +142,7 @@ public class Main {
                         System.out.println("Menü:");
                         System.out.println("1. Bir Kitap Ekle");
                         System.out.println("2. Bir Kitap Sil");
+                        System.out.println("9. Ana Menüye Dön");
                         System.out.println("0. Çıkış");
 
                         System.out.print("Seçenek: ");
@@ -176,8 +179,9 @@ public class Main {
                                     }
                                 }
                                 break;
-
-
+                            case "9":
+                                System.out.println("Ana menüye dönülüyor...");
+                                continue anaMenu;
                             case "0":
                                 System.out.println("Çıkış yapılıyor...");
                                 System.exit(0);
@@ -188,6 +192,9 @@ public class Main {
                         }
                     }
                 }
+            } else if (secenek.equals("e")) {
+                System.out.println("Çıkış yapılıyor.");
+                System.exit(-1);
             }
         }
     }
