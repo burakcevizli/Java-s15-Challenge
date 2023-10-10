@@ -74,7 +74,7 @@ public class Library implements LibraryDoAble {
             System.out.println( "Adventure Categories : " + advenventureCategory);
         }else if(categories.equals(Categories.HORROR)){
             System.out.println("Horror Categories : " + horrorCategory );
-        }else if(categories.equals(Categories.SCI_FICTION)){
+        }else if(categories.equals(Categories.SPORTS)){
             System.out.println("Sci-Fic Categories : " + scienceFictionCategory);
         }
     }

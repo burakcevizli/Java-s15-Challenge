@@ -4,13 +4,14 @@ import com.workintech.Library.Classes.Student;
 import com.workintech.Library.Enum.Categories;
 import com.workintech.Library.Interfaces.Actionable;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Books book1 = new Books(1, "Burak CEVİZLİ", "JAVA", Categories.HORROR);
         Books book2 = new Books(2, "Ahmet Süleyman", "JAVA2", Categories.ADVENTURE);
-        Books book3 = new Books(3, "Osman PAMUKOGLU", "JAVA3", Categories.SCI_FICTION);
+        Books book3 = new Books(3, "Osman PAMUKOGLU", "JAVA3", Categories.SPORTS);
         Books book4 = new Books(4, "KİTAP4 YAZARI", "BAKICAZ", Categories.HORROR);
         Books book5 = new Books(5, "KİTAP4 YAZARI", "KITAP5", Categories.ADVENTURE);
         Books book6 = new Books(6, "KİTAP4 YAZARI", "KITAP6", Categories.ADVENTURE);
@@ -63,11 +64,11 @@ public class Main {
                             case "1":
                                 System.out.println("Lütfen almak istediğiniz kitabın ismini giriniz : ");
                                 String bookName = scanner.next().toUpperCase();
+                                student.addUserList(library.getBooksByName(bookName));
                                 System.out.println("Faturanız " + (Actionable.userList.size() + 1) * 5 + " tl dir .");
                                 if (Actionable.userList.size() < 5) {
                                     System.out.println("Kitabınız eklenmiştir : " + bookName);
                                 }
-                                student.addUserList(library.getBooksByName(bookName));
                                 System.out.println("Kitaplarınız : " + student);
                                 break;
                             case "2":
@@ -88,7 +89,7 @@ public class Main {
                                 String kategori = scanner.next();
                                 switch (kategori) {
                                     case "1" -> library.listByCategories(Categories.ADVENTURE);
-                                    case "2" -> library.listByCategories(Categories.SCI_FICTION);
+                                    case "2" -> library.listByCategories(Categories.SPORTS);
                                     case "3" -> library.listByCategories(Categories.HORROR);
                                     default -> System.out.println("Olmayan bir kategori seçtiniz.");
                                 }
@@ -111,16 +112,20 @@ public class Main {
                             case "7":
                                 System.out.println("Enter book ID: ");
                                 int bookID = scanner.nextInt();
-                                System.out.println("Enter book author: ");
-                                String bookAuthor = scanner.next();
-                                System.out.println("Enter book name: ");
-                                String bookNameForAdding = scanner.next();
-                                System.out.println("Enter book category: ");
-                                Categories bookCategory = Categories.valueOf(scanner.next().toUpperCase());
-                                Books addedBook = new Books(bookID, bookAuthor, bookNameForAdding, bookCategory);
-                                library.addBookLibrary(addedBook);
-                                System.out.println("Your book added library: " + addedBook);
-                                System.out.println("Updated Book List: " + library);
+                                if (Actionable.allBooks2.containsKey(bookID)) {
+                                    System.out.println("Aynı id ye ekleme yapamazsınız...");
+                                } else {
+                                    System.out.println("Enter book author: ");
+                                    String bookAuthor = scanner.next();
+                                    System.out.println("Enter book name: ");
+                                    String bookNameForAdding = scanner.next().toUpperCase();
+                                    System.out.println("Enter book category: ");
+                                    Categories bookCategory = Categories.valueOf(scanner.next().toUpperCase());
+                                    Books addedBook = new Books(bookID, bookAuthor, bookNameForAdding, bookCategory);
+                                    library.addBookLibrary(addedBook);
+                                    System.out.println("Your book added library: " + addedBook);
+                                    System.out.println("Updated Book List: " + library);
+                                }
                                 break;
                             case "9":
                                 System.out.println("Ana menüye dönülüyor...");
@@ -152,16 +157,20 @@ public class Main {
                             case "1":
                                 System.out.println("Enter book ID: ");
                                 int bookID = scanner.nextInt();
-                                System.out.println("Enter book author: ");
-                                String bookAuthor = scanner.next();
-                                System.out.println("Enter book name: ");
-                                String bookNameForAdding = scanner.next();
-                                System.out.println("Enter book category: ");
-                                Categories bookCategory = Categories.valueOf(scanner.next().toUpperCase());
-                                Books addedBook = new Books(bookID, bookAuthor, bookNameForAdding, bookCategory);
-                                library.addBookLibrary(addedBook);
-                                System.out.println("Your book added library: " + addedBook);
-                                System.out.println("Updated Book List: " + library);
+                                if (Actionable.allBooks2.containsKey(bookID)) {
+                                    System.out.println("Aynı id ye ekleme yapamazsınız...");
+                                } else {
+                                    System.out.println("Enter book author: ");
+                                    String bookAuthor = scanner.next();
+                                    System.out.println("Enter book name: ");
+                                    String bookNameForAdding = scanner.next().toUpperCase();
+                                    System.out.println("Enter book category: ");
+                                    Categories bookCategory = Categories.valueOf(scanner.next().toUpperCase());
+                                    Books addedBook = new Books(bookID, bookAuthor, bookNameForAdding, bookCategory);
+                                    library.addBookLibrary(addedBook);
+                                    System.out.println("Your book added library: " + addedBook);
+                                    System.out.println("Updated Book List: " + library);
+                                }
                                 break;
 
                             case "2":
@@ -179,6 +188,22 @@ public class Main {
                                     }
                                 }
                                 break;
+
+                            case "3":
+                                Scanner scanner2 = new Scanner(System.in);
+                                System.out.println("Düzenlenecek kitabı seçiniz :");
+                                String duzenlenecekBookName = scanner2.nextLine().toUpperCase();
+                                Books duzenlenecekKitap = library.getBooksByName(duzenlenecekBookName);
+                                System.out.println("Düzenlenecek kitabın yazar ismini giriniz :");
+                                String yeniYazarName = scanner2.nextLine();
+                                duzenlenecekKitap.setYazar(yeniYazarName);
+                                System.out.println("Düzenlenecek kitabın ismini giriniz :");
+                                String yeniKitapName = scanner2.nextLine().toUpperCase();
+                                duzenlenecekKitap.setName(yeniKitapName);
+                                System.out.println("Duzenlenecek kategoriyi yazınız.");
+                                Categories yeniKitapKategori = Categories.valueOf(scanner2.nextLine().toUpperCase());
+                                duzenlenecekKitap.setKategori(yeniKitapKategori);
+                                System.out.println("KITAP DUZENLENMISTIR " + duzenlenecekKitap);
                             case "9":
                                 System.out.println("Ana menüye dönülüyor...");
                                 continue anaMenu;
