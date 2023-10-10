@@ -12,9 +12,9 @@ public class Main {
         Books book1 = new Books(1, "Burak CEVİZLİ", "JAVA", Categories.HORROR);
         Books book2 = new Books(2, "Ahmet Süleyman", "JAVA2", Categories.ADVENTURE);
         Books book3 = new Books(3, "Osman PAMUKOGLU", "JAVA3", Categories.SPORTS);
-        Books book4 = new Books(4, "KİTAP4 YAZARI", "BAKICAZ", Categories.HORROR);
-        Books book5 = new Books(5, "KİTAP4 YAZARI", "KITAP5", Categories.ADVENTURE);
-        Books book6 = new Books(6, "KİTAP4 YAZARI", "KITAP6", Categories.ADVENTURE);
+        Books book4 = new Books(4, "KİTAP4 YAZARI", "BAKİCAZ", Categories.HORROR);
+        Books book5 = new Books(5, "KİTAP4 YAZARI", "KİTAP5", Categories.ADVENTURE);
+        Books book6 = new Books(6, "KİTAP4 YAZARI", "KİTAP6", Categories.ADVENTURE);
 
         Library library = new Library();
         library.addBookLibrary(book1);
@@ -28,7 +28,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("********************** KUTUPHANEMIZE HOS GELDINIZ **********************");
-        System.out.println("************************************");
+        System.out.println(" ");
         anaMenu:
         while (true) {
             System.out.println("OGRENCIYSENIZ S ' YE , KUTUPHANECI ISENIZ L ' YE BASINIZ ,ÇIKMAK ICIN E ' A BASINIZ. ");
@@ -65,9 +65,10 @@ public class Main {
                                 System.out.println("Lütfen almak istediğiniz kitabın ismini giriniz : ");
                                 String bookName = scanner.next().toUpperCase();
                                 student.addUserList(library.getBooksByName(bookName));
-                                System.out.println("Faturanız " + (Actionable.userList.size() + 1) * 5 + " tl dir .");
+
                                 if (Actionable.userList.size() < 5) {
                                     System.out.println("Kitabınız eklenmiştir : " + bookName);
+                                    System.out.println("Faturanız 5 tl dir .");
                                 }
                                 System.out.println("Kitaplarınız : " + student);
                                 break;
@@ -147,6 +148,7 @@ public class Main {
                         System.out.println("Menü:");
                         System.out.println("1. Bir Kitap Ekle");
                         System.out.println("2. Bir Kitap Sil");
+                        System.out.println("3. Bir Kitap Düzenle");
                         System.out.println("9. Ana Menüye Dön");
                         System.out.println("0. Çıkış");
 
@@ -191,18 +193,18 @@ public class Main {
 
                             case "3":
                                 Scanner scanner2 = new Scanner(System.in);
+
                                 System.out.println("Düzenlenecek kitabı seçiniz :");
                                 String duzenlenecekBookName = scanner2.nextLine().toUpperCase();
                                 Books duzenlenecekKitap = library.getBooksByName(duzenlenecekBookName);
                                 System.out.println("Düzenlenecek kitabın yazar ismini giriniz :");
                                 String yeniYazarName = scanner2.nextLine();
-                                duzenlenecekKitap.setYazar(yeniYazarName);
                                 System.out.println("Düzenlenecek kitabın ismini giriniz :");
                                 String yeniKitapName = scanner2.nextLine().toUpperCase();
-                                duzenlenecekKitap.setName(yeniKitapName);
                                 System.out.println("Duzenlenecek kategoriyi yazınız.");
                                 Categories yeniKitapKategori = Categories.valueOf(scanner2.nextLine().toUpperCase());
-                                duzenlenecekKitap.setKategori(yeniKitapKategori);
+                                Books newBook = new Books(duzenlenecekKitap.getID(),yeniYazarName,yeniKitapName,yeniKitapKategori);
+                                duzenlenecekKitap.setBook(newBook);
                                 System.out.println("KITAP DUZENLENMISTIR " + duzenlenecekKitap);
                             case "9":
                                 System.out.println("Ana menüye dönülüyor...");

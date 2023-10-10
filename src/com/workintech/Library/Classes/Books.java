@@ -1,6 +1,7 @@
 package com.workintech.Library.Classes;
 
 import com.workintech.Library.Enum.Categories;
+import com.workintech.Library.Interfaces.Actionable;
 
 import java.util.Objects;
 
@@ -34,6 +35,26 @@ public class Books implements Comparable<Books> {
     }
 
 
+    public void setBook(Books book){
+        if (this.getKategori().equals(Categories.ADVENTURE)) {
+            Actionable.advenventureCategory.remove(book);
+        } else if (this.getKategori().equals(Categories.HORROR)) {
+            Actionable.horrorCategory.remove(book);
+        } else {
+            Actionable.scienceFictionCategory.remove(book);
+        }
+        this.setName(book.getName());
+        this.setYazar(book.getYazar());
+        this.setKategori(book.getKategori());
+        if (book.getKategori().equals(Categories.ADVENTURE)) {
+           Actionable.advenventureCategory.add(book);
+        } else if (book.getKategori().equals(Categories.HORROR)) {
+           Actionable.horrorCategory.add(book);
+        } else {
+           Actionable.scienceFictionCategory.add(book);
+        }
+
+    }
     public void setYazar(String yazar) {
         Yazar = yazar;
     }
@@ -44,6 +65,7 @@ public class Books implements Comparable<Books> {
 
     public void setKategori(Categories kategori) {
         this.kategori = kategori;
+
     }
 
     @Override
@@ -51,7 +73,7 @@ public class Books implements Comparable<Books> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Books books = (Books) o;
-        return ID == books.ID && Objects.equals(Name, books.Name);
+        return ID == books.ID;
     }
 
     @Override
